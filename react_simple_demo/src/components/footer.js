@@ -10,4 +10,11 @@ class Footer extends Component {
   }
 }
 
+// shorter syntax
+// const Footer = ({ message }) => (
+//   <footer className='app-footer'>
+//     <p>{message}</p>
+//   </footer>
+// )
+
 export default Footer
