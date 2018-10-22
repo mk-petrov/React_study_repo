@@ -10947,6 +10947,7 @@ addSwipeGesture: function() {
   /* >>fastclick */
   _checkInstance()
 }))
+
 /*
  * Toastr
  * Copyright 2012-2015
