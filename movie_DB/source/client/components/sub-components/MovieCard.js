@@ -20,7 +20,7 @@ export default class MovieCard extends React.Component {
             <h4 className='media-heading'>
               <Link to={`/movie/${this.props.movie._id}/${this.props.movie.name}`}>{this.props.movie.name}</Link>
             </h4>
-            <small>Genres: {this.props.movie.genres}</small>
+            <small>Genres: {this.props.movie.genres} </small>
             <br />
             <p>{this.props.movie.description}</p>
             <span className='votes'>Votes:

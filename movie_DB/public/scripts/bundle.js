@@ -1361,19 +1361,77 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var App = function (_React$Component) {
   _inherits(App, _React$Component);
 
-  function App() {
+  function App(props) {
     _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+    _this.state = {
+      loggedInUserId: ''
+    };
+
+    _this.LOGIN_DEFAULT_USER = _this.LOGIN_DEFAULT_USER.bind(_this);
+    return _this;
   }
 
   _createClass(App, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.LOGIN_DEFAULT_USER();
+    }
+
+    // Temporary Login function
+
+  }, {
+    key: 'LOGIN_DEFAULT_USER',
+    value: function LOGIN_DEFAULT_USER() {
+      var _this2 = this;
+
+      var request = {
+        url: '/user/login',
+        method: 'post',
+        data: JSON.stringify({ username: 'admin', password: 'admin' }),
+        contentType: 'application/json'
+      };
+
+      $.ajax(request).done(function (userId) {
+        return _this2.setState({ loggedInUserId: userId });
+      }).fail(function (err) {
+        console.log('UserMenu: err', err);
+        _this2.setState({
+          loggedInUserId: '',
+          message: err.responseJSON.message
+        });
+      });
+    }
+  }, {
+    key: 'logoutUser',
+    value: function logoutUser() {
+      var _this3 = this;
+
+      var request = {};
+
+      $.ajax(request).done(function () {
+        _this3.setState({ loggedInUserId: '' });
+      }).fail(function (err) {
+        _this3.setState({
+          error: err.responseJSON.message
+        });
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var userData = {
+        loggedInUserId: this.state.loggedInUserId,
+        loginUser: this.LOGIN_DEFAULT_USER,
+        logoutUser: this.logoutUser.bind(this)
+      };
+
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(_Navbar2.default, null),
+        _react2.default.createElement(_Navbar2.default, { history: this.props.history, userData: userData }),
         this.props.children,
         _react2.default.createElement(_Footer2.default, null)
       );
@@ -2162,7 +2220,8 @@ var MovieCard = function (_React$Component) {
               'small',
               null,
               'Genres: ',
-              this.props.movie.genres
+              this.props.movie.genres,
+              ' '
             ),
             _react2.default.createElement('br', null),
             _react2.default.createElement(
