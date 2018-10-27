@@ -1436,7 +1436,6 @@ var App = function (_React$Component) {
         'div',
         null,
         _react2.default.createElement(_Navbar2.default, { history: this.props.history, userData: userData }),
-        _react2.default.createElement(_UserProfile2.default, null),
         this.props.children,
         _react2.default.createElement(_Footer2.default, null)
       );
@@ -2194,7 +2193,7 @@ var UserProfile = function (_Component) {
 
     _this.state = {
       username: '',
-      rolse: [],
+      roles: [],
       information: '',
       votes: '',
       reviews: '',

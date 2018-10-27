@@ -63,7 +63,6 @@ export default class App extends React.Component {
     return (
       <div>
         <Navbar history={this.props.history} userData={userData} />
-        <UserProfile />
         {this.props.children}
         <Footer />
       </div>
