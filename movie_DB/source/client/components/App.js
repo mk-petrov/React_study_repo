@@ -2,6 +2,7 @@ import React from 'react'
 
 import Navbar from './Navbar'
 import Footer from './Footer'
+import UserProfile from './UserProfile'
 
 export default class App extends React.Component {
   constructor (props) {
@@ -62,6 +63,7 @@ export default class App extends React.Component {
     return (
       <div>
         <Navbar history={this.props.history} userData={userData} />
+        <UserProfile />
         {this.props.children}
         <Footer />
       </div>
