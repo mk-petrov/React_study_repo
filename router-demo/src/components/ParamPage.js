@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import queryString from 'query-string'
 
 class ParamPage extends Component {
   render () {
@@ -6,6 +7,8 @@ class ParamPage extends Component {
     let id = params.id
     let name = params.name
 
+    let queryStringObj = queryString.parse(this.props.location.search)
+    console.log(queryStringObj)
     return (
       <div>
         <h1>Param Page</h1>
